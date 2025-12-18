@@ -21,13 +21,13 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v4
         with:
-          path: Pong-front/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('Pong-front/package-lock.json') }}
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
       - name: Print demo secret (will be masked)
-        working-directory: Pong-front
+        working-directory: .
         env:
           CI_TEST_SECRET: ${{ secrets.CI_TEST_SECRET }}
         run: |
@@ -35,7 +35,7 @@ jobs:
         continue-on-error: true
 
       - name: Run tests and save output
-        working-directory: Pong-front
+        working-directory: .
         run: |
           mkdir -p test-results
           npm test --silent 2>&1 | tee test-results/frontend.log
@@ -46,5 +46,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Pong-front-test-results
-          path: Pong-front/test-results/
+          path: test-results/
           
