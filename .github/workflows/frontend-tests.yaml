@@ -26,10 +26,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies
-        working-directory: Pong-front
-        run: npm ci
-
       - name: Print demo secret (will be masked)
         working-directory: Pong-front
         env:
