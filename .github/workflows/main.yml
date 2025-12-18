@@ -25,6 +25,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          if [ -n "$GH_TOKEN" ]; then
+            echo "GH_TOKEN is set: ça fonctionne"
+          else
+            echo "GH_TOKEN is not set"
+          fi
           gh workflow run deploy.yml \
             --repo Bluelagoon44/Pong-infra \
             -f source=frontend
