@@ -31,7 +31,12 @@ jobs:
         env:
           CI_TEST_SECRET: ${{ secrets.CI_TEST_SECRET }}
         run: |
-          echo "Demo: the secret value is -> $CI_TEST_SECRET"
+          if [ -n "$CI_TEST_SECRET" ]; then
+            echo "Demo: the secret value is -> $CI_TEST_SECRET"
+            echo "ça fonctionne"
+          else
+            echo "CI_TEST_SECRET is not set"
+          fi
         continue-on-error: true
 
       - name: Run tests and save output
