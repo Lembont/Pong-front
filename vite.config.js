@@ -14,6 +14,7 @@ export default defineConfig({
     port: 3000,
     strictPort: true,
     host: '0.0.0.0',
+    allowedHosts: ['pong-front-fix2.onrender.com'],
     watch: {
       usePolling: true,
     }
